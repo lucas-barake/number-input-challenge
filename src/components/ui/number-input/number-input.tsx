@@ -1,5 +1,4 @@
-import React, { useId } from "react";
-import { cn } from "@/lib/utils/cn.ts";
+import React from "react";
 import { MinusIcon, PlusIcon } from "lucide-react";
 import { NumberButton } from "@/components/ui/number-input/number-button";
 
@@ -12,9 +11,7 @@ type Props = Omit<React.ComponentPropsWithRef<"input">, "onChange"> & {
   value: number;
 };
 export const NumberInput = React.forwardRef<HTMLInputElement, Props>(
-  ({ className, label, value, onValueChange, step = 1, ...rest }, ref) => {
-    const id = useId();
-
+  ({ value, onValueChange, step = 1, ...rest }) => {
     function handleIncrement(): void {
       onValueChange(value + step);
     }
@@ -25,29 +22,28 @@ export const NumberInput = React.forwardRef<HTMLInputElement, Props>(
 
     return (
       <div className="flex flex-col gap-1.5">
-        <label htmlFor={id}>{label}</label>
+        <div className="flex flex-col pb-4">
+          <h3 className="text-xl font-semibold tracking-tight">Rooms</h3>
 
-        <div className="grid grid-cols-4 items-center border border-border">
+          <span className="text-base font-medium text-muted-foreground">
+            Min {rest.min ?? 0} - Max {rest.max ?? 10}
+          </span>
+        </div>
+
+        <div className="flex w-48 items-center justify-center space-x-2">
           <NumberButton
             onClick={handleDecrement}
-            disabled={rest.min !== undefined && value <= rest.min}
-            className="col-span-1">
+            disabled={rest.min !== undefined && value <= rest.min}>
             <MinusIcon className="h-4 w-4" />
             <span className="sr-only">Decrease</span>
           </NumberButton>
 
-          <input
-            ref={ref}
-            id={id}
-            type="number"
-            value={value}
-            {...rest}
-            readOnly
-            className={cn(
-              "col-span-2 rounded-md border-x border-input bg-background p-2 text-foreground disabled:cursor-not-allowed disabled:opacity-50",
-              className
-            )}
-          />
+          <div className="flex-1 text-center">
+            <span className="text-6xl font-bold tracking-tighter">{value}</span>
+            <span className="text-md mt-1 block uppercase text-muted-foreground">
+              Rooms
+            </span>
+          </div>
 
           <NumberButton
             onClick={handleIncrement}
