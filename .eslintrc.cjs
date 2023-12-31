@@ -5,6 +5,7 @@ module.exports = {
     "eslint:recommended",
     "plugin:@typescript-eslint/recommended",
     "plugin:react-hooks/recommended",
+    "plugin:tailwindcss/recommended",
   ],
   ignorePatterns: ["dist", ".eslintrc.cjs", "vite.config.ts", "node_modules"],
   parser: "@typescript-eslint/parser",
@@ -110,5 +111,11 @@ module.exports = {
       },
     ],
     "no-self-compare": "error",
+
+    // Tailwind
+    "tailwindcss/classnames-order": "error",
+    "tailwindcss/enforces-negative-arbitrary-values": "error",
+    "tailwindcss/enforces-shorthand": "error",
+    "tailwindcss/no-contradicting-classname": "error",
   },
 };
