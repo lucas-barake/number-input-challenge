@@ -29,9 +29,7 @@ export const NumberInput = React.forwardRef<HTMLInputElement, Props>(
 
         <div className="grid grid-cols-4 items-center border border-border">
           <NumberButton
-            onClick={() => {
-              handleDecrement();
-            }}
+            onClick={handleDecrement}
             disabled={rest.min !== undefined && value <= rest.min}
             className="col-span-1">
             <MinusIcon className="h-4 w-4" />
@@ -52,9 +50,7 @@ export const NumberInput = React.forwardRef<HTMLInputElement, Props>(
           />
 
           <NumberButton
-            onClick={() => {
-              handleIncrement();
-            }}
+            onClick={handleIncrement}
             disabled={rest.max !== undefined && value >= rest.max}
             className="col-span-1">
             <PlusIcon className="h-4 w-4" />
